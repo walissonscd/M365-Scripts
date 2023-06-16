@@ -9,6 +9,7 @@ $pause = 35      # Adjust the pause duration (in seconds) between batches as des
 
 $usersCount = $Users.Count
 $batchCount = [Math]::Ceiling($usersCount / $batchSize)
+$location = BR
 
 # Create an array to store the users with errors
 $usersWithError = @()
@@ -37,7 +38,7 @@ for ($batchIndex = 0; $batchIndex -lt $batchCount; $batchIndex++) {
             }
 
             try {
-                Update-MgUser -UserId $userObj.Id -UsageLocation BR
+                Update-MgUser -UserId $userObj.Id -UsageLocation $location
                 Set-MgUserLicense -UserId $userObj.Id -AddLicenses $addLicenses -RemoveLicenses @()
                 Write-Host "Licenses assigned to user $displayName ($userPrincipalName)." -ForegroundColor Green
 
