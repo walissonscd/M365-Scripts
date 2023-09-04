@@ -15,18 +15,19 @@ Microsoft Graph PowerShell SDK:
     
     Install-Module -Name Microsoft.Graph
 
-Script Configuration
-    Open the GraphAdminMembership.ps1 script in a text editor of your choice.
-    Locate the following variables and replace the placeholders with your actual values:
-        $tenantID: Your Azure AD Tenant ID.
-        $applicationId: Your registered Azure AD Application ID.
-        $clientSecret: The generated Client Secret for the application.
+# Script Configuration
+
+* Open the GraphAdminMembership.ps1 script in a text editor of your choice.
+* Locate the following variables and replace the placeholders with your actual values:
+  * $tenantID: Your Azure AD Tenant ID.
+  * $applicationId: Your registered Azure AD Application ID.
+  * $clientSecret: The generated Client Secret for the application.
 
 # Running the Script
 
 Authentication:
-    Open PowerShell on your computer.
-    Navigate to the directory containing the script using the cd command, for example:
+        Open PowerShell on your computer.
+        Navigate to the directory containing the script using the cd command, for example:
      
        cd C:\Path\To\Script
 
