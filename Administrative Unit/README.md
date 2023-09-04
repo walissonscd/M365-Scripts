@@ -22,7 +22,7 @@ Script Configuration
         $applicationId: Your registered Azure AD Application ID.
         $clientSecret: The generated Client Secret for the application.
 
-Running the Script
+# Running the Script
 
 Authentication:
     Open PowerShell on your computer.
@@ -36,17 +36,17 @@ Run the script by typing its filename and pressing Enter:
 
 The script will authenticate using the provided credentials and proceed with administrative unit management.
 
-Script Execution:
+# Script Execution:
         The script performs the following steps:
             Authenticates to Microsoft Graph using the provided Azure AD application credentials.
             Checks for existing administrative units based on company names and creates them if necessary.
             Adds users to corresponding administrative units based on their company names.
 
-Monitoring Progress:
+# Monitoring Progress:
         Follow the script's output in the PowerShell console to monitor its progress.
         The script will provide messages indicating the creation of administrative units and the addition of users.
 
-Limitations and Considerations
+# Limitations and Considerations
 
 The script assumes that user data is correctly structured with accurate company names for administrative unit organization.
 Enhance error handling, logging, and advanced error reporting for production use.
