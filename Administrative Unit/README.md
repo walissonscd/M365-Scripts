@@ -2,7 +2,7 @@
 
 The GraphAdminMembership.ps1 script is a PowerShell tool designed to facilitate the management of administrative units and user memberships within Microsoft Graph. This script interacts with the Microsoft Graph API to create and manage administrative units based on company names and adds users as members to the corresponding administrative units.
 
-#Prerequisites
+# Prerequisites
 
 Azure AD Application Setup:
         Register an application in the Azure portal to obtain the required Application ID.
