@@ -1,6 +1,13 @@
 # Authenticate to Microsoft Graph
-Connect-MgGraph -Scope "User.ReadWrite.All", "Group.ReadWrite.All", "Directory.ReadWrite.All"
-Select-MgProfile -Name "beta"
+$tenantID = "<YourTenantID>"
+$applicationId = "<YourApplicationId>"
+$clientSecret = "<YourClientSecret>"
+
+$SecuredPasswordPassword = ConvertTo-SecureString -String $clientSecret -AsPlainText -Force
+
+$ClientSecretCredential = New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $applicationId, $SecuredPasswordPassword
+
+Connect-MgGraph -TenantId $tenantID -ClientSecretCredential $ClientSecretCredential
 
 # Function to check if an administrative unit with the given name exists
 function Get-AdministrativeUnit {
@@ -39,13 +46,13 @@ function Add-UserAsAdministrativeUnitMember {
     # Add user as a member
     $existingMembers = Get-MgDirectoryAdministrativeUnitMember -AdministrativeUnitId $administrativeUnitId -All | Select-Object -ExpandProperty Id
     if ($existingMembers -contains $user.id) {
-        Write-Output "User with ID '$username' is already a member of the administrative unit $companyName."
+        Write-Output "User with ID '$username' is already a member of the administrative unit."
     } else {
         $params = @{
             "@odata.id" = "https://graph.microsoft.com/v1.0/users/$($user.id)"
         }
         New-MgDirectoryAdministrativeUnitMemberByRef -AdministrativeUnitId $administrativeUnitId -BodyParameter $params
-        Write-Output "User with ID '$username' added as a member of the administrative unit $companyName."
+        Write-Output "User with ID '$username' added as a member of the administrative unit."
     }
 
     # Add user's group membership to administrative unit
@@ -57,9 +64,9 @@ function Add-UserAsAdministrativeUnitMember {
                 "@odata.id" = "https://graph.microsoft.com/v1.0/groups/$($group.id)"
             }
             New-MgDirectoryAdministrativeUnitMemberByRef -AdministrativeUnitId $administrativeUnitId -BodyParameter $groupParams
-            Write-Output "Group with ID '$($group.DisplayName)' added as a member of the administrative unit $companyName."
+            Write-Output "Group with ID '$($group.DisplayName)' added as a member of the administrative unit."
         } else {
-            Write-Output "Group with ID '$($group.DisplayName)' is already a member of the administrative unit $companyName."
+            Write-Output "Group with ID '$($group.DisplayName)' is already a member of the administrative unit."
         }
     }
 }
