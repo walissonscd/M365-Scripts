@@ -37,7 +37,7 @@ Run the script by typing its filename and pressing Enter:
 The script will authenticate using the provided credentials and proceed with administrative unit management.
 
 # Script Execution:
-        The script performs the following steps:
+## The script performs the following steps:
             Authenticates to Microsoft Graph using the provided Azure AD application credentials.
             Checks for existing administrative units based on company names and creates them if necessary.
             Adds users to corresponding administrative units based on their company names.
